@@ -40,18 +40,18 @@ class TestcontainersSpring {
 
     @Bean
     fun testcontainersRunner(repository: StudentRepository) = ApplicationRunner {
-        log.info(repository.save(Student(name = "dripto", age = 12)).toString())
-        log.info(repository.save(Student(name = "tuki", age = 22)).toString())
+        log.info(repository.save(StudentTC(name = "dripto", age = 12)).toString())
+        log.info(repository.save(StudentTC(name = "tuki", age = 22)).toString())
         log.info(repository.findAll().toString())
     }
 }
 
 @Entity
-data class Student(
+data class StudentTC(
         @Id
         val id: UUID = UUID.randomUUID(),
         val name: String,
         val age: Int
 )
 
-interface StudentRepository: JpaRepository<Student, UUID>
+interface StudentRepository: JpaRepository<StudentTC, UUID>

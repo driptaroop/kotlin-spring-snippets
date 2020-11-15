@@ -31,6 +31,9 @@ class KotlinLogging {
     fun loggingRunner() = ApplicationRunner {
         log.info("=============logging in app runner============$log")
         blah()
+        "doing something".let { log.info(it) }
+        val thread = Runnable { log.info("in runnable") }
+        Thread(thread).start()
     }
 }
 
