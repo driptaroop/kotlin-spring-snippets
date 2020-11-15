@@ -1,8 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
 	val kotlinVersion = "1.4.10"
-	id("org.springframework.boot") version "2.3.5.RELEASE"
+	id("org.springframework.boot") version "2.4.0"
 	id("io.spring.dependency-management") version "1.0.10.RELEASE"
 	kotlin("jvm") version kotlinVersion
 	kotlin("plugin.spring") version kotlinVersion
@@ -14,7 +15,7 @@ version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
-	mavenCentral()
+	jcenter()
 }
 
 dependencies {
@@ -34,9 +35,15 @@ tasks.withType<Test> {
 	useJUnitPlatform()
 }
 
-tasks.withType<KotlinCompile> {
-	kotlinOptions {
-		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "11"
+tasks{
+	withType<KotlinCompile> {
+		kotlinOptions {
+			freeCompilerArgs = listOf("-Xjsr305=strict")
+			jvmTarget = "11"
+		}
 	}
+}
+
+springBoot {
+	mainClassName = "org.dripto.example.spring.snippets.ApplicationKt"
 }
