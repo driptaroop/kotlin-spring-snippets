@@ -1,7 +1,8 @@
-package org.dripto.example.spring.snippets
+package org.dripto.example.spring.snippets.delegation
 
-import org.dripto.example.spring.snippets.Demeanor.CAUTIOUS
-import org.dripto.example.spring.snippets.Demeanor.FRIENDLY
+import org.dripto.example.spring.snippets.delegation.Demeanor.CAUTIOUS
+import org.dripto.example.spring.snippets.delegation.Demeanor.FRIENDLY
+import org.dripto.example.spring.snippets.logging.log
 import org.springframework.boot.ApplicationRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

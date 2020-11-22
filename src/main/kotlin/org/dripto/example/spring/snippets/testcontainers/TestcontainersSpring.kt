@@ -1,5 +1,6 @@
-package org.dripto.example.spring.snippets
+package org.dripto.example.spring.snippets.testcontainers
 
+import org.dripto.example.spring.snippets.logging.log
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.jdbc.DataSourceBuilder
 import org.springframework.context.annotation.Bean
@@ -16,9 +17,9 @@ import javax.sql.DataSource
 
 /*START SNIPPET*/
 @Component
-class PostgresContainer (
-        imageName: String = "postgres"
-): PostgreSQLContainer<PostgresContainer>(imageName) {
+class PostgresContainer(
+    imageName: String = "postgres"
+) : PostgreSQLContainer<PostgresContainer>(imageName) {
     @PostConstruct fun setup() = start()
     @PreDestroy fun teardown() = stop()
 }
@@ -48,10 +49,10 @@ class TestcontainersSpring {
 
 @Entity
 data class StudentTC(
-        @Id
-        val id: UUID = UUID.randomUUID(),
-        val name: String,
-        val age: Int
+    @Id
+    val id: UUID = UUID.randomUUID(),
+    val name: String,
+    val age: Int
 )
 
-interface StudentRepository: JpaRepository<StudentTC, UUID>
+interface StudentRepository : JpaRepository<StudentTC, UUID>
