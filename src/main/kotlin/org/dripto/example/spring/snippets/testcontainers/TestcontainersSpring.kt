@@ -2,9 +2,11 @@ package org.dripto.example.spring.snippets.testcontainers
 
 import org.dripto.example.spring.snippets.logging.log
 import org.springframework.boot.ApplicationRunner
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
 import org.springframework.boot.jdbc.DataSourceBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Profile
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Component
 import org.testcontainers.containers.PostgreSQLContainer
@@ -17,6 +19,7 @@ import javax.sql.DataSource
 
 /*START SNIPPET*/
 @Component
+@Profile("local")
 class PostgresContainer(
     imageName: String = "postgres"
 ) : PostgreSQLContainer<PostgresContainer>(imageName) {
@@ -29,6 +32,7 @@ class PostgresContainer(
 @Configuration
 class TestcontainersSpring {
     @Bean
+    @ConditionalOnBean(PostgresContainer::class)
     fun datasource(container: PostgresContainer): DataSource = DataSourceBuilder.create()
             .apply {
                 with(container) {
