@@ -35,3 +35,5 @@ out/
 
 ### VS Code ###
 .vscode/
+benchmark_sequence.json
+benchmark_sequence.log
