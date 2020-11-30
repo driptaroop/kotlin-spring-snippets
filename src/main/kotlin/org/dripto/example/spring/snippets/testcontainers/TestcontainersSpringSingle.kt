@@ -30,7 +30,7 @@ class PostgresContainer(
 
 /*EXAMPLE*/
 @Configuration
-class TestcontainersSpring {
+class TestcontainersSpringSingle {
     @Bean
     @ConditionalOnBean(PostgresContainer::class)
     fun datasource(container: PostgresContainer): DataSource = DataSourceBuilder.create()
